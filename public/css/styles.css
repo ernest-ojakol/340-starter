@@ -4,3 +4,337 @@
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  background-image: url('/images/site/checkerboard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.siteName a {
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.siteName a:hover {
+  text-decoration: underline;
+}
+
+#tools a {
+  color: white;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+#tools a:hover {
+  text-decoration: underline;
+}
+
+/* Nav */
+nav {
+  background-color: #f7f7f7;
+  padding: 15px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* width: fit-content; */
+  width: 800px;
+  margin: 0px auto;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+nav ul li:hover {
+  background-color: #ff9f80;
+  color: white;
+  transform: translateY(-3px);
+}
+
+nav ul li.active {
+  background-color: #ff7b5f;
+  color: white;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer .copyright {
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Wrapper */
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+/* Sections */
+section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.welcome {
+  background-image: url('/images/vehicles/delorean.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.welcome h1 {
+  position:absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 10px;
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  color: #333;
+}
+
+.section_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.reviews,
+.upgrades {
+  width: 48%;
+}
+
+.reviews ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reviews ul li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.reviews ul li:hover {
+  background-color: #5f5f5fa8;
+  color: white;
+  transform: translateY(-3px);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.reviews h4 {
+  text-align: center;
+}
+
+.upgrades ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.upgrades ul li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  width: calc(50% - 20px);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.upgrades ul li img {
+  max-width: 100%;
+  border-radius: 8px;
+  height: auto;
+}
+
+.upgrades ul li:hover {
+  background-color: #9dd4ff;
+  color: white;
+  transform: translateY(-3px);
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.upgrades h4 {
+  text-align: center;
+}
+
+/* Delo Card */
+.delo-card {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.799);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  color: rgb(0, 159, 159);
+}
+
+.delo-card h2 {
+  margin-top: 0;
+}
+
+.delo-card ul {
+  padding-left: 20px;
+  list-style: none;
+}
+
+.delo-card img {
+  display: block;
+  margin-top: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  nav ul li:last-child {
+    margin-bottom: 0;
+  }
+
+  #top-header {
+    flex-direction: column;
+    width: 90%;
+    padding: 15px;
+  }
+
+  #top-header .siteName,
+  #top-header #tools {
+    margin-bottom: 10px;
+  }
+
+  #top-header a {
+    font-size: 1.1rem;
+  }
+
+  footer {
+    padding: 15px;
+    width: 90%;
+  }
+
+  .reviews,
+  .upgrades {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .upgrades ul li {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
