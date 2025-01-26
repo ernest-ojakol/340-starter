@@ -1,0 +1,10 @@
+<section id="page-title">
+<% if (title) { %>
+    <h3>
+        <%= title %>
+    </h3>
+    <% } else { res.redirect('/') } %>
+</section>
+<section>
+<%- grid %>
+</section>
