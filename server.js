@@ -17,7 +17,6 @@ const utilities = require("./utilities/")
 /* ***********************
  * Routes
  *************************/
-
 /* ***********************
  * View Engine and Templates
  *************************/
