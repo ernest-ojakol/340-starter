@@ -3,7 +3,9 @@
 <form action="/inv/addclassification" method="POST">
     <div class="form-group">
         <label for="make">Classification</label>
-        <input type="text" id="classification_name" name="classification_name" required placeholder="Enter Classification">
+        <input type="text" id="classification_name" name="classification_name" required placeholder="Enter Classification" pattern="^[A-Za-z0-9]+$" 
+               minlength="3" 
+               title="Classification should have at least 3 characters and no spaces." >
     </div>
 
     <button type="Submit">Add Classification</button>
