@@ -18,6 +18,7 @@ const session = require("express-session")
 const pool = require('./database')
 const bodyParser = require("body-parser")
 const invController = require("./controllers/invController")
+const session = require("express-session")
 
 /* ***********************
  * Middleware
