@@ -147,7 +147,7 @@ section {
 h1 {
   text-align: center;
   font-size: 2rem;
-  color: #fff;
+  color: #000000;
   padding: 40px 0;
 }
 
@@ -517,6 +517,7 @@ button.submit-btn:hover {
 
   h1 {
     font-size: 1.5rem;
+    color: black;
   }
 
   #vehicle-display {

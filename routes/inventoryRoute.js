@@ -10,5 +10,6 @@ router.get("/addinventory", invController.buildAddInventoryView);
 router.get("/addclassification", invController.buildAddClassificationView);
 router.post("/addclassification", invController.processAddedClassification);
 router.post("/addinventory", invController.processAddedVehicle);
+router.get("/getInventory/:classification_id", invController.getInventoryJSON);
 
 module.exports = router;

@@ -18,11 +18,16 @@ const session = require("express-session")
 const pool = require('./database')
 const bodyParser = require("body-parser")
 const invController = require("./controllers/invController")
+const cookieParser = require("cookie-parser")
 //const session = require("express-session")
 
 /* ***********************
  * Middleware
  * ************************/
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cookieParser())
+
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -34,14 +39,14 @@ app.use(session({
   name: 'sessionId',
 }))
 
+app.use(utilities.checkJWTToken)
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
   res.locals.messages = require('express-messages')(req, res)
   next()
 })
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 /* ***********************
  * Routes

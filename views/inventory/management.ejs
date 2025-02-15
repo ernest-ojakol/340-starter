@@ -9,6 +9,16 @@
     <% } %>
 </section>
 <section id="vehicle-display">
-    <a href="addClassification">Add New Classification</a><br><br>
+    <a href="/inv/addclassification">Add New Classification</a><br><br>
     <a href="/inv/addinventory">Add New Vehicle</a><br><br>
 </section>
+<h2>Manage Inventory</h2>
+<p>Select a classification and See Items under that classification</p>
+<%- select %>
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+
+
+
+<script src="../../js/inventory.js"></script>

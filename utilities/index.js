@@ -1,4 +1,7 @@
 const invModel = require("../models/inventory-model")
+const accountModel = require("../models/account-model");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -104,5 +107,83 @@ Util.buildClassificationList = async function (classification_id = null) {
   classificationList += "</select>"
   return classificationList
 }
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+ if (req.cookies.jwt) {
+  jwt.verify(
+   req.cookies.jwt,
+   process.env.ACCESS_TOKEN_SECRET,
+   function (err, accountData) {
+    if (err) {
+     req.flash("Please log in")
+     res.clearCookie("jwt")
+     return res.redirect("/account/account/login")
+    }
+    res.locals.accountData = accountData
+    res.locals.loggedin = 1
+    next()
+   })
+ } else {
+  next()
+ }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/account/login")
+  }
+ }
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.verifyAccountType=async function (req, res, next){
+  //console.log('Cookies:', req.cookies);
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).render("account/login", {
+      title: "Login",
+      nav: Util.getNav(),
+      userIsLoggedIn: false,
+      notice: "You must be logged in to access this page.",
+    });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const accountData = accountModel.getAccountByEmail(decoded.account_email);
+    
+    if (accountData && (accountData.account_type === 'Employee' || accountData.account_type === 'Admin')) {
+      req.user = accountData;
+      next();
+    } else {
+      return res.status(403).render("account/login", {
+        title: "Login",
+        nav: Util.getNav(),
+        userIsLoggedIn: false,
+        notice: "You are not authorized to access this page. Please log in as an Employee or Admin.",
+      });
+    }
+  } catch (error) {
+    console.error('JWT verification failed:', error);
+    return res.status(401).render("account/login", {
+      title: "Login",
+      nav: Util.getNav(),
+      userIsLoggedIn: false,
+      notice: "You must be logged in to access this page.",
+    });
+  }
+}
+
 
 module.exports = Util

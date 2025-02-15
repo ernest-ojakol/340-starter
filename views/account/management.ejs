@@ -1,0 +1,11 @@
+<h1>Account Management</h1>
+
+<% if (accountType==='Client' ) { %>
+<h2>Welcome <%= user.account_firstname %></h2>
+    <p><a href="/account/account/update/<%= user.account_id %>">Update Account Information</a></p>
+<% } else { %>
+<h2>Welcome <%= user.account_firstname %></h2>
+    <h3>Inventory Management</h3>
+    <p><a href="/inv">Go to Inventory Management</a></p>
+    <p><a href="/account/account/update/<%= user.account_id %>">Update Account Information</a></p>
+<% } %>

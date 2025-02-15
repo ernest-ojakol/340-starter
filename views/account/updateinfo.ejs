@@ -1,0 +1,29 @@
+<h2>Update Info</h2>
+
+<form action="/account/account/update" method="post">
+    <div class="form-group">
+        <label for="first-name">First Name:</label><br>
+        <input type="hidden" name="account_id" value="<%= user.account_id %>">
+        <input type="text" id="first-name" name="account_firstname" class="form-input" value="<%= user.account_firstname %>" required><br><br>
+
+        <label for="last-name">Last Name:</label><br>
+        <input type="text" id="last-name" name="account_lastname" class="form-input" value="<%= user.account_lastname %>" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="account_email" class="form-input" value="<%= user.account_email %>" required><br><br>
+
+        <input type="submit" value="Update Info" class="submit-btn">
+    </div>
+</form>
+
+<h2>Update Password</h2>
+
+<form action="/account/account/updatePassword" method="post">
+    <div class="form-group">
+        <input type="hidden" name="account_id" value="<%= user.account_id %>">
+        <label for="password">New Password:</label><br>
+        <input type="password" id="password" class="form-input" name="account_password" required><br><br>
+
+        <input type="submit" value="Update Password" class="submit-btn">
+    </div>
+</form>
