@@ -1,0 +1,12 @@
+<h2>Update Other Account Password</h2>
+
+<form action="/account/account/updateother" method="post">
+    <div class="form-group">
+        <label for="account">Account</label>
+        <%- select %>
+        <label for="password">New Password:</label><br>
+        <input type="password" id="password" class="form-input" name="account_password" required><br><br>
+
+        <input type="submit" value="Update Password" class="submit-btn">
+    </div>
+</form>

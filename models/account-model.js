@@ -46,6 +46,12 @@ async function updateAccountPassword (account_password,account_id) {
   }
 }
 
+
+async function getUserAccounts(){
+  return await pool.query("SELECT * FROM public.account ORDER BY account_email")
+}
+
+
 module.exports = {
-    registerAccount, getAccountByEmail,updateAccount, updateAccountPassword
+    registerAccount, getAccountByEmail,updateAccount, updateAccountPassword,getUserAccounts
 }

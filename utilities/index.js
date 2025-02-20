@@ -185,5 +185,24 @@ Util.checkJWTToken = (req, res, next) => {
   }
 }
 
+Util.buildAccountList = async function (account_id = null) {
+  let data = await accountModel.getUserAccounts()
+  let accountList =
+    '<select name="account_id" id="accountList" required>'
+  accountList += "<option value=''>Choose an Account</option>"
+  data.rows.forEach((row) => {
+    accountList += '<option value="' + row.account_id + '"'
+    if (
+      account_id != null &&
+      row.account_id == account_id
+    ) {
+      accountList += " selected "
+    }
+    accountList += ">" + row.account_email + "</option>"
+  })
+  accountList += "</select>"
+  return accountList
+}
+
 
 module.exports = Util

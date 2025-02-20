@@ -314,4 +314,80 @@ async function logout(req, res, next) {
     }
 };
 
-module.exports = { buildLogin , buildRegister, registerAccount, accountLogin,buildAccountManagement,buildUpdateAccountForm,updateAccountInfo, updateAccountPassword,logout}
+async function buildUpdateUser(req, res, next) {
+  let nav = await utilities.getNav()
+  const select = await utilities.buildAccountList()
+  const jwtCookie = req.cookies.jwt;
+  const verified = jwt.verify(jwtCookie, process.env.ACCESS_TOKEN_SECRET);
+  console.log("Verified user data:", verified);
+  const { account_type: accountType, ...user } = verified;
+  
+  res.render("account/updateotheraccount", {
+    title: "",
+    nav,
+    select,
+    userIsLoggedIn: true,
+    accountType,
+    user,
+  })
+}
+
+async function updateOtherAccountPassword(req, res) {
+  let nav = await utilities.getNav()
+  const { account_password,account_id } = req.body
+
+  console.log(JSON.stringify(req.body))
+
+  const jwtCookie = req.cookies.jwt;
+  const verified = jwt.verify(jwtCookie, process.env.ACCESS_TOKEN_SECRET);
+  console.log("Verified user data:", verified);
+  const { account_type: accountType, ...user } = verified;
+
+  //Hash the password before storing
+  let hashedPassword
+  try {
+    //regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the registration.')
+    res.status(500).render("account/updateinfo", {
+      title: "Registration",
+      nav,
+      errors: null,
+      userIsLoggedIn: true,
+      user,
+      accountType,
+    })
+  }
+
+  const regResult = await accountModel.updateAccountPassword(
+    hashedPassword,
+    account_id
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'re update your account password.`
+    )
+    res.status(201).render("account/management", {
+      title: "Login",
+      nav,
+      userIsLoggedIn: true,
+      user,
+      accountType,
+    })
+  } else {
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("account/management", {
+      title: "Registration",
+      nav,
+      userIsLoggedIn: true,
+      user,
+      accountType,
+    })
+  }
+}
+
+
+module.exports = { buildLogin , buildRegister, registerAccount, accountLogin,buildAccountManagement,buildUpdateAccountForm,updateAccountInfo, updateAccountPassword,logout,buildUpdateUser,updateOtherAccountPassword}
